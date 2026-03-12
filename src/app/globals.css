@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+    --color-gold-50: #fbf8ea;
+    --color-gold-100: #f5eed0;
+    --color-gold-200: #ebddab;
+    --color-gold-300: #e0c77d;
+    --color-gold-400: #d6b054;
+    --color-gold-500: #cb9b36;
+    --color-gold-600: #b07e26;
+    --color-gold-700: #8c5f21;
+    --color-gold-800: #744d22;
+    --color-gold-900: #604020;
+    --color-gold-950: #36210e;
+
+    --color-oscar-red-50: #fdf3f3;
+    --color-oscar-red-100: #fae4e5;
+    --color-oscar-red-200: #f4cdd0;
+    --color-oscar-red-300: #ecaaaf;
+    --color-oscar-red-400: #e07d85;
+    --color-oscar-red-500: #d0535e;
+    --color-oscar-red-600: #b93a46;
+    --color-oscar-red-700: #9b2b35;
+    --color-oscar-red-800: #822730;
+    --color-oscar-red-900: #6e242a;
+    --color-oscar-red-950: #3c1015;
+
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-serif: "Playfair Display", Georgia, serif;
+}
+
+/* Base styling */
+body {
+    background-color: var(--color-oscar-red-950);
+    background-image: radial-gradient(circle at top right, var(--color-oscar-red-900) 0%, transparent 40%),
+        radial-gradient(circle at bottom left, var(--color-gold-950) 0%, transparent 30%);
+    color: var(--color-gold-50);
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+    color: var(--color-gold-400);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+    background: rgba(60, 16, 21, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(214, 176, 84, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle gold glow text */
+.text-glow {
+    text-shadow: 0 0 10px rgba(214, 176, 84, 0.3), 0 0 20px rgba(214, 176, 84, 0.1);
+}
+
+/* Pulsaing indicator */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(208, 83, 94, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(208, 83, 94, 0);
+    }
+
+    100% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(208, 83, 94, 0);
+    }
+}
+
+.live-indicator {
+    animation: pulse-ring 2s infinite;
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}
