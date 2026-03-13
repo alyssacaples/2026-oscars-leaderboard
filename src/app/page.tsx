@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import LeaderboardTable from "@/components/LeaderboardTable";
+import ParticipantTable from "@/components/ParticipantTable";
 import AutoRefresh from "@/components/AutoRefresh";
 import { fetchPicks, fetchWinners } from "@/lib/google-sheets";
 import { calculateLeaderboard } from "@/lib/leaderboard";
@@ -25,6 +26,7 @@ export default async function Home() {
             <AutoRefresh intervalMs={60000} />
             <Hero />
             <LeaderboardTable scores={scores} />
+            <ParticipantTable scores={scores} />
 
             {/* Footer */}
             <div className="w-full text-center py-12 text-gold-500/40 text-sm font-light mt-auto">

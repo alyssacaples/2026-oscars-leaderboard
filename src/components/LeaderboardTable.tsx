@@ -127,45 +127,7 @@ export default function LeaderboardTable({ scores }: { scores: PlayerScore[] }) 
                 </div>
             </div>
 
-            {/* All Participants Section */}
-            <div className="flex flex-col gap-6 mt-8">
-                <div className="flex items-center gap-4 px-2">
-                    <h3 className="text-xl font-serif text-gold-300 font-medium">All Participants</h3>
-                    <div className="h-[1px] flex-grow bg-gradient-to-r from-gold-900/50 to-transparent" />
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {scores.map((player) => (
-                        <div key={`all-${player.name}`} className="glass-panel rounded-xl overflow-hidden border-gold-900/30">
-                            <div
-                                className="p-4 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-colors"
-                                onClick={() => toggleExpand(`all-${player.name}`)}
-                            >
-                                <div className="flex items-center gap-3">
-                                    <span className="text-gold-500/70 font-mono text-xs w-4">{player.rank}</span>
-                                    <span className="font-medium text-gold-100">{player.name}</span>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <span className="text-gold-300 font-serif">{player.score} pts</span>
-                                    <ChevronDown className={`w-4 h-4 text-gold-600 transition-transform ${expandedPlayer === `all-${player.name}` ? '-rotate-180' : ''}`} />
-                                </div>
-                            </div>
-
-                            {/* Expandable Breakdown */}
-                            <div className={`
-                        grid transition-[grid-template-rows] duration-300 ease-in-out
-                        ${expandedPlayer === `all-${player.name}` ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}
-                    `}>
-                                <div className="overflow-hidden">
-                                    <div className="border-t border-gold-900/30">
-                                        <CategoryBreakdown player={player} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
         </div>
     );
 }

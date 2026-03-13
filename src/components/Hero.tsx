@@ -41,7 +41,10 @@ export default function Hero() {
                         Academy Awards
                     </h1>
                     <p className="text-oscar-red-100/70 max-w-lg mx-auto text-lg md:text-xl font-light">
-                        Live Office Pool Leaderboard
+                        Live Oscar Pool Leaderboard
+                    </p>
+                    <p className="text-oscar-red-100/70 max-w-lg mx-auto text-lg md:text-xl font-light">
+                        The Oscars start at 4 pm PDT / 7 pm EDT.
                     </p>
                 </div>
 
