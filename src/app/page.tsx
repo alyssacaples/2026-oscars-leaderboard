@@ -4,8 +4,6 @@ import AutoRefresh from "@/components/AutoRefresh";
 import { fetchPicks, fetchWinners } from "@/lib/google-sheets";
 import { calculateLeaderboard } from "@/lib/leaderboard";
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 60;
 
 const SHEET_ID = process.env.GOOGLE_SHEET_ID || "1laUmrg0B40zXrNriqToHZ91cQx44UvMn4bU78VjLSqo";
 
