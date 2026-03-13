@@ -15,11 +15,12 @@ export interface WinnerData {
 }
 
 export async function fetchSheetData(sheetId: string, sheetName: string): Promise<any[]> {
-    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+    // Add a cache-busting timestamp so the browser always fetches fresh data
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}&_t=${new Date().getTime()}`;
 
     try {
         const response = await fetch(url, {
-            next: { revalidate: 60 } // Revalidate every 60 seconds (1 minute polling)
+            cache: 'no-store'
         });
 
         if (!response.ok) {
