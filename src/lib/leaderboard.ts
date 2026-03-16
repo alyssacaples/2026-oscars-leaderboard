@@ -68,8 +68,29 @@ export function calculateLeaderboard(picks: PlayerPick[], winners: WinnerData[])
             const cleanPick = pick.trim();
 
             const actualWinnerKey = Array.from(winnersMap.keys()).find(k => baseCategory.toLowerCase().includes(k) || k.includes(baseCategory.toLowerCase()));
-            const actualWinnerName = actualWinnerKey ? winnersMap.get(actualWinnerKey) : null;
+            let actualWinnerName = actualWinnerKey ? winnersMap.get(actualWinnerKey) : null;
 
+            // --- Tie logic for Live Action Short Film ---
+            const isTieCategory = baseCategory.toLowerCase().includes('live action short film');
+            const isTieWinnerPick = cleanPick.toLowerCase() === 'two people exchanging saliva' || cleanPick.toLowerCase() === 'the singers';
+            const isFirstOrSecondChoice = columnName.includes('1st Choice') || columnName.includes('2nd Choice');
+
+            if (isTieCategory && isTieWinnerPick) {
+                if (isFirstOrSecondChoice) {
+                    score += 100;
+                    correctPicks.push({ category: `${baseCategory} (100pts - Tie Bonus)`, pick: cleanPick });
+                } else {
+                    score += points;
+                    correctPicks.push({ category: `${baseCategory} (${points}pts)`, pick: cleanPick });
+                }
+                return; // Pick graded, move to next column
+            }
+
+            if (isTieCategory && !actualWinnerName) {
+                // If the Winners sheet isn't updated yet, still count the category as announced
+                actualWinnerName = "Two People Exchanging Saliva & The Singers";
+            }
+            // ---------------------------------------------
 
             if (actualWinnerName) {
                 // Category has been announced
